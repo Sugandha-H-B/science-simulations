@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Drag-and-Drop Activity with User Injection</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            background: #f0f8ff; /* Soft light blue background */
+            padding: 20px;
+        }
+        h1 {
+            color: #4b8b3b; /* Subtle green title */
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 2.5em;
+        }
+        .instructions {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .box {
+            border: 3px solid #ddd;
+            width: 30%;
+            min-height: 250px;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .box h3 {
+            margin: 0;
+            color: #4b8b3b;
+            font-size: 1.5em;
+        }
+        .box.active {
+            border: 3px solid #6c9c8d; /* Light teal border when active */
+        }
+        .box.correct {
+            background-color: #e0f7fa; /* Light cyan for correct drop */
+            transform: scale(1.05); /* Zoom effect when correct */
+        }
+        .box.incorrect {
+            background-color: #f9e6e6; /* Soft pink for incorrect drop */
+            transform: scale(1.05); /* Zoom effect when incorrect */
+        }
+        .drag-item {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 15px;
+            background-color: #a8d8ea; /* Soft blue background for draggable items */
+            color: #fff;
+            border-radius: 10px;
+            cursor: grab;
+            font-weight: bold;
+            font-size: 16px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .drag-item:hover {
+            background-color: #6c9c8d; /* Darker teal when hovered */
+        }
+        .drag-item:active {
+            transform: scale(1.1);
+            cursor: grabbing;
+        }
+        #dragItems {
+            margin-top: 20px;
+        }
+        #energyInfo {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #ffffff;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        #energyInfo.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .feedback-message {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .feedback-message.correct {
+            color: #66bb6a; /* Soft green for correct feedback */
+        }
+        .feedback-message.incorrect {
+            color: #f44336; /* Soft red for incorrect feedback */
+        }
+        .tooltip {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .drag-item:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Renewable vs Non-Renewable Resources</h1>
+    <p class="instructions">Drag and drop the energy sources into the correct categories. You'll get instant feedback to help you learn!</p>
+
+    <div class="container">
+        <div id="renewable" class="box" ondrop="drop(event, 'renewable')" ondragover="allowDrop(event)">
+            <h3>Renewable Resources</h3>
+        </div>
+        <div id="nonRenewable" class="box" ondrop="drop(event, 'non-renewable')" ondragover="allowDrop(event)">
+            <h3>Non-Renewable Resources</h3>
+        </div>
+    </div>
+
+    <div id="dragItems">
+        <button class="drag-item" draggable="true" ondragstart="drag(event)" id="air">
+            Air
+            <span class="tooltip">Renewable</span>
+        </button>
+        <button class="drag-item" draggable="true" ondragstart="drag(event)" id="coal">
+            Coal
+            <span class="tooltip">Non-Renewable</span>
+        </button>
+        <button class="drag-item" draggable="true" ondragstart="drag(event)" id="solar">
+            Solar Energy
+            <span class="tooltip">Renewable</span>
+        </button>
+        <button class="drag-item" draggable="true" ondragstart="drag(event)" id="gas">
+            Natural Gas
+            <span class="tooltip">Non-Renewable</span>
+        </button>
+        <button class="drag-item" draggable="true" ondragstart="drag(event)" id="water">
+            Water
+            <span class="tooltip">Renewable</span>
+        </button>
+        <button class="drag-item" draggable="true" ondragstart="drag(event)" id="nuclear">
+            Nuclear Energy
+            <span class="tooltip">Non-Renewable</span>
+        </button>
+    </div>
+
+    <audio id="correctSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+    <audio id="wrongSound" src="https://www.soundjay.com/button/beep-10.wav"></audio>
+
+    <div id="energyInfo"></div>
+
+    <script>
+        const correctAnswers = {
+            air: 'renewable',
+            coal: 'non-renewable',
+            solar: 'renewable',
+            gas: 'non-renewable',
+            water: 'renewable',
+            nuclear: 'non-renewable'
+        };
+
+        const energyInfo = {
+            air: "Air is a renewable resource. It is naturally replenished and cannot be exhausted by human activities.",
+            coal: "Coal is a non-renewable resource. It is formed over millions of years and cannot be replaced once depleted.",
+            solar: "Solar energy is a renewable resource. It comes from the sun and can be used to generate electricity without polluting the environment.",
+            gas: "Natural gas is a non-renewable resource. It is formed from ancient organic materials and is finite in supply.",
+            water: "Water is a renewable resource. It is constantly replenished by the water cycle and is essential for life on Earth.",
+            nuclear: "Nuclear energy is a non-renewable resource. It is produced from the energy stored in atomic nuclei, but uranium is limited and non-replenishable."
+        };
+
+        function allowDrop(event) {
+            event.preventDefault();
+            const box = event.target.closest('.box');
+            box.classList.add('active');
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        function drop(event, category) {
+            event.preventDefault();
+            const data = event.dataTransfer.getData("text");
+            const draggedItem = document.getElementById(data);
+            const box = event.target.closest('.box');
+
+            if (correctAnswers[data] === category) {
+                box.appendChild(draggedItem);
+                box.classList.add('correct');
+                document.getElementById('correctSound').play();
+                showEnergyInfo(data, 'correct');
+            } else {
+                box.classList.add('incorrect');
+                document.getElementById('wrongSound').play();
+                showEnergyInfo(data, 'incorrect');
+            }
+
+            setTimeout(() => {
+                box.classList.remove('active', 'correct', 'incorrect');
+            }, 1000);
+        }
+
+        function showEnergyInfo(energyId, feedback) {
+            const infoDiv = document.getElementById('energyInfo');
+            infoDiv.textContent = energyInfo[energyId];
+            infoDiv.classList.add('show');
+
+            const feedbackDiv = document.createElement('div');
+            feedbackDiv.classList.add('feedback-message', feedback);
+            feedbackDiv.textContent = feedback === 'correct' ? 'Correct! Well done!' : 'Oops! Try again.';
+            infoDiv.appendChild(feedbackDiv);
+
+            setTimeout(() => {
+                infoDiv.classList.remove('show');
+                feedbackDiv.remove();
+            }, 3000);
+        }
+
+        document.querySelectorAll('.box').forEach(box => {
+            box.addEventListener('dragleave', () => box.classList.remove('active'));
+        });
+    </script>
+</body>
+</html>

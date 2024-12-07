@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Periodic Table</title>
+  <link rel="stylesheet" href="table.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Interactive Periodic Table</h1>
+    <p>Click on an element to learn more about it!</p>
+    <div class="periodic-table">
+      <!-- Periodic Table Elements -->
+      <div class="element group-nonmetal" onclick="showDetails('Hydrogen', 1, 1.008, 'H', 'Nonmetal, Gas')">
+        <div class="symbol">H</div>
+        <div class="number">1</div>
+      </div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      
+     
+      
+      <div class="element group-noble-gas" onclick="showDetails('Helium', 2, 4.0026, 'He', 'Noble Gas')">
+        <div class="symbol">He</div>
+        <div class="number">2</div>
+      </div>
+      <!-- Lithium and Beryllium -->
+      <div class="element group-alkali-metal" onclick="showDetails('Lithium', 3, 6.94, 'Li', 'Alkali Metal')">
+        <div class="symbol">Li</div>
+        <div class="number">3</div>
+      </div>
+      <div class="element group-alkaline-earth-metal" onclick="showDetails('Beryllium', 4, 9.0122, 'Be', 'Alkaline Earth Metal')">
+        <div class="symbol">Be</div>
+        <div class="number">4</div>
+      </div>
+      <!-- Transition Metals Spacer -->
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <div class="element group-other-nonmetal" onclick="showDetails('Boron', 5, 10.81, 'B', 'Metalloid')">
+        <div class="symbol">B</div>
+        <div class="number">5</div>
+      </div>
+      <div class="element group-other-nonmetal" onclick="showDetails('Carbon', 6, 12.011, 'C', 'Nonmetal')">
+        <div class="symbol">C</div>
+        <div class="number">6</div>
+      </div>
+      <div class="element group-other-nonmetal" onclick="showDetails('Nitrogen', 7, 14.007, 'N', 'Nonmetal, Gas')">
+        <div class="symbol">N</div>
+        <div class="number">7</div>
+      </div>
+      <div class="element group-other-nonmetal" onclick="showDetails('Oxygen', 8, 15.999, 'O', 'Nonmetal, Gas')">
+        <div class="symbol">O</div>
+        <div class="number">8</div>
+      </div>
+      <div class="element group-other-nonmetal" onclick="showDetails('Fluorine', 9, 18.998, 'F', 'Halogen, Gas')">
+        <div class="symbol">F</div>
+        <div class="number">9</div>
+      </div>
+      <div class="element group-noble-gas" onclick="showDetails('Neon', 10, 20.180, 'Ne', 'Noble Gas')">
+        <div class="symbol">Ne</div>
+        <div class="number">10</div>
+      </div>
+    
+
+      <!-- Sodium -->
+<div class="element group-alkali-metal" onclick="showDetails('Sodium', 11, 22.990, 'Na', 'Alkali Metal')">
+  <div class="symbol">Na</div>
+  <div class="number">11</div>
+</div>
+<!-- Magnesium -->
+<div class="element group-alkaline-earth-metal" onclick="showDetails('Magnesium', 12, 24.305, 'Mg', 'Alkaline Earth Metal')">
+  <div class="symbol">Mg</div>
+  <div class="number">12</div>
+</div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+      
+<!-- Aluminum -->
+<div class="element group-post-transition-metal" onclick="showDetails('Aluminum', 13, 26.982, 'Al', 'Post-Transition Metal')">
+  <div class="symbol">Al</div>
+  <div class="number">13</div>
+</div>
+<!-- Silicon -->
+<div class="element group-metalloid" onclick="showDetails('Silicon', 14, 28.085, 'Si', 'Metalloid')">
+  <div class="symbol">Si</div>
+  <div class="number">14</div>
+</div>
+<!-- Phosphorus -->
+<div class="element group-other-nonmetal" onclick="showDetails('Phosphorus', 15, 30.974, 'P', 'Nonmetal')">
+  <div class="symbol">P</div>
+  <div class="number">15</div>
+</div>
+<!-- Sulfur -->
+<div class="element group-other-nonmetal" onclick="showDetails('Sulfur', 16, 32.06, 'S', 'Nonmetal')">
+  <div class="symbol">S</div>
+  <div class="number">16</div>
+</div>
+<!-- Chlorine -->
+<div class="element group-halogen" onclick="showDetails('Chlorine', 17, 35.45, 'Cl', 'Halogen')">
+  <div class="symbol">Cl</div>
+  <div class="number">17</div>
+</div>
+<!-- Argon -->
+<div class="element group-noble-gas" onclick="showDetails('Argon', 18, 39.948, 'Ar', 'Noble Gas')">
+  <div class="symbol">Ar</div>
+  <div class="number">18</div>
+</div>
+<!-- Potassium -->
+<div class="element group-alkali-metal" onclick="showDetails('Potassium', 19, 39.098, 'K', 'Alkali Metal')">
+  <div class="symbol">K</div>
+  <div class="number">19</div>
+</div>
+<!-- Calcium -->
+<div class="element group-alkaline-earth-metal" onclick="showDetails('Calcium', 20, 40.078, 'Ca', 'Alkaline Earth Metal')">
+  <div class="symbol">Ca</div>
+  <div class="number">20</div>
+</div>
+<!-- Scandium -->
+<div class="element group-transition-metal" onclick="showDetails('Scandium', 21, 44.956, 'Sc', 'Transition Metal')">
+  <div class="symbol">Sc</div>
+  <div class="number">21</div>
+</div>
+<!-- Titanium -->
+<div class="element group-transition-metal" onclick="showDetails('Titanium', 22, 47.867, 'Ti', 'Transition Metal')">
+  <div class="symbol">Ti</div>
+  <div class="number">22</div>
+</div>
+<!-- Vanadium -->
+<div class="element group-transition-metal" onclick="showDetails('Vanadium', 23, 50.942, 'V', 'Transition Metal')">
+  <div class="symbol">V</div>
+  <div class="number">23</div>
+</div>
+<!-- Chromium -->
+<div class="element group-transition-metal" onclick="showDetails('Chromium', 24, 51.996, 'Cr', 'Transition Metal')">
+  <div class="symbol">Cr</div>
+  <div class="number">24</div>
+</div>
+<!-- Manganese -->
+<div class="element group-transition-metal" onclick="showDetails('Manganese', 25, 54.938, 'Mn', 'Transition Metal')">
+  <div class="symbol">Mn</div>
+  <div class="number">25</div>
+</div>
+<!-- Iron -->
+<div class="element group-transition-metal" onclick="showDetails('Iron', 26, 55.845, 'Fe', 'Transition Metal')">
+  <div class="symbol">Fe</div>
+  <div class="number">26</div>
+</div>
+<!-- Cobalt -->
+<div class="element group-transition-metal" onclick="showDetails('Cobalt', 27, 58.933, 'Co', 'Transition Metal')">
+  <div class="symbol">Co</div>
+  <div class="number">27</div>
+</div>
+<!-- Nickel -->
+<div class="element group-transition-metal" onclick="showDetails('Nickel', 28, 58.693, 'Ni', 'Transition Metal')">
+  <div class="symbol">Ni</div>
+  <div class="number">28</div>
+</div>
+<!-- Copper -->
+<div class="element group-transition-metal" onclick="showDetails('Copper', 29, 63.546, 'Cu', 'Transition Metal')">
+  <div class="symbol">Cu</div>
+  <div class="number">29</div>
+</div>
+<!-- Zinc -->
+<div class="element group-transition-metal" onclick="showDetails('Zinc', 30, 65.38, 'Zn', 'Transition Metal')">
+  <div class="symbol">Zn</div>
+  <div class="number">30</div>
+</div>
+<!-- Gallium -->
+<div class="element group-post-transition-metal" onclick="showDetails('Gallium', 31, 69.723, 'Ga', 'Post-Transition Metal')">
+  <div class="symbol">Ga</div>
+  <div class="number">31</div>
+</div>
+<!-- Germanium -->
+<div class="element group-metalloid" onclick="showDetails('Germanium', 32, 72.63, 'Ge', 'Metalloid')">
+  <div class="symbol">Ge</div>
+  <div class="number">32</div>
+</div>
+<!-- Arsenic -->
+<div class="element group-metalloid" onclick="showDetails('Arsenic', 33, 74.922, 'As', 'Metalloid')">
+  <div class="symbol">As</div>
+  <div class="number">33</div>
+</div>
+<!-- Selenium -->
+<div class="element group-other-nonmetal" onclick="showDetails('Selenium', 34, 78.971, 'Se', 'Nonmetal')">
+  <div class="symbol">Se</div>
+  <div class="number">34</div>
+</div>
+<!-- Bromine -->
+<div class="element group-halogen" onclick="showDetails('Bromine', 35, 79.904, 'Br', 'Halogen')">
+  <div class="symbol">Br</div>
+  <div class="number">35</div>
+</div>
+<!-- Krypton -->
+<div class="element group-noble-gas" onclick="showDetails('Krypton', 36, 83.798, 'Kr', 'Noble Gas')">
+  <div class="symbol">Kr</div>
+  <div class="number">36</div>
+</div>
+<!-- Rubidium -->
+<div class="element group-alkali-metal" onclick="showDetails('Rubidium', 37, 85.468, 'Rb', 'Alkali Metal')">
+  <div class="symbol">Rb</div>
+  <div class="number">37</div>
+</div>
+<!-- Strontium -->
+<div class="element group-alkaline-earth-metal" onclick="showDetails('Strontium', 38, 87.62, 'Sr', 'Alkaline Earth Metal')">
+  <div class="symbol">Sr</div>
+  <div class="number">38</div>
+</div>
+<!-- Yttrium -->
+<div class="element group-transition-metal" onclick="showDetails('Yttrium', 39, 88.906, 'Y', 'Transition Metal')">
+  <div class="symbol">Y</div>
+  <div class="number">39</div>
+</div>
+<!-- Zirconium -->
+<div class="element group-transition-metal" onclick="showDetails('Zirconium', 40, 91.224, 'Zr', 'Transition Metal')">
+  <div class="symbol">Zr</div>
+  <div class="number">40</div>
+</div>
+<!-- Niobium -->
+<div class="element group-transition-metal" onclick="showDetails('Niobium', 41, 92.906, 'Nb', 'Transition Metal')">
+  <div class="symbol">Nb</div>
+  <div class="number">41</div>
+</div>
+<!-- Molybdenum -->
+<div class="element group-transition-metal" onclick="showDetails('Molybdenum', 42, 95.95, 'Mo', 'Transition Metal')">
+  <div class="symbol">Mo</div>
+  <div class="number">42</div>
+</div>
+<!-- Technetium -->
+<div class="element group-transition-metal" onclick="showDetails('Technetium', 43, 98, 'Tc', 'Transition Metal')">
+  <div class="symbol">Tc</div>
+  <div class="number">43</div>
+</div>
+<!-- Ruthenium -->
+<div class="element group-transition-metal" onclick="showDetails('Ruthenium', 44, 101.07, 'Ru', 'Transition Metal')">
+  <div class="symbol">Ru</div>
+  <div class="number">44</div>
+</div>
+<!-- Rhodium -->
+<div class="element group-transition-metal" onclick="showDetails('Rhodium', 45, 102.91, 'Rh', 'Transition Metal')">
+  <div class="symbol">Rh</div>
+  <div class="number">45</div>
+</div>
+<!-- Palladium -->
+<div class="element group-transition-metal" onclick="showDetails('Palladium', 46, 106.42, 'Pd', 'Transition Metal')">
+  <div class="symbol">Pd</div>
+  <div class="number">46</div>
+</div>
+<!-- Silver -->
+<div class="element group-transition-metal" onclick="showDetails('Silver', 47, 107.87, 'Ag', 'Transition Metal')">
+  <div class="symbol">Ag</div>
+  <div class="number">47</div>
+</div>
+<!-- Cadmium -->
+<div class="element group-transition-metal" onclick="showDetails('Cadmium', 48, 112.41, 'Cd', 'Transition Metal')">
+  <div class="symbol">Cd</div>
+  <div class="number">48</div>
+</div>
+<!-- Indium -->
+<div class="element group-post-transition-metal" onclick="showDetails('Indium', 49, 114.82, 'In', 'Post-Transition Metal')">
+  <div class="symbol">In</div>
+  <div class="number">49</div>
+</div>
+<!-- Tin -->
+<div class="element group-post-transition-metal" onclick="showDetails('Tin', 50, 118.71, 'Sn', 'Post-Transition Metal')">
+  <div class="symbol">Sn</div>
+  <div class="number">50</div>
+</div>
+<!-- Antimony -->
+<div class="element group-metalloid" onclick="showDetails('Antimony', 51, 121.76, 'Sb', 'Metalloid')">
+  <div class="symbol">Sb</div>
+  <div class="number">51</div>
+</div>
+<!-- Tellurium -->
+<div class="element group-metalloid" onclick="showDetails('Tellurium', 52, 127.6, 'Te', 'Metalloid')">
+  <div class="symbol">Te</div>
+  <div class="number">52</div>
+</div>
+<!-- Iodine -->
+<div class="element group-halogen" onclick="showDetails('Iodine', 53, 126.9, 'I', 'Halogen')">
+  <div class="symbol">I</div>
+  <div class="number">53</div>
+</div>
+<!-- Xenon -->
+<div class="element group-noble-gas" onclick="showDetails('Xenon', 54, 131.29, 'Xe', 'Noble Gas')">
+  <div class="symbol">Xe</div>
+  <div class="number">54</div>
+</div>
+<!-- Cesium -->
+<div class="element group-alkali-metal" onclick="showDetails('Cesium', 55, 132.91, 'Cs', 'Alkali Metal')">
+  <div class="symbol">Cs</div>
+  <div class="number">55</div>
+</div>
+<!-- Barium -->
+<div class="element group-alkaline-earth-metal" onclick="showDetails('Barium', 56, 137.33, 'Ba', 'Alkaline Earth Metal')">
+  <div class="symbol">Ba</div>
+  <div class="number">56</div>
+</div>
+<div class="element group-lanthanide" onclick="showDetails('Lanthanides')">
+  <div class="symbol">La-Lu</div>
+  <div class="number">57-71</div>
+</div>
+
+<!-- Hafnium -->
+<div class="element group-transition-metal" onclick="showDetails('Hafnium', 72, 178.49, 'Hf', 'Transition Metal')">
+  <div class="symbol">Hf</div>
+  <div class="number">72</div>
+</div>
+<!-- Tantalum -->
+<div class="element group-transition-metal" onclick="showDetails('Tantalum', 73, 180.95, 'Ta', 'Transition Metal')">
+  <div class="symbol">Ta</div>
+  <div class="number">73</div>
+</div>
+<!-- Tungsten -->
+<div class="element group-transition-metal" onclick="showDetails('Tungsten', 74, 183.84, 'W', 'Transition Metal')">
+  <div class="symbol">W</div>
+  <div class="number">74</div>
+</div>
+<!-- Rhenium -->
+<div class="element group-transition-metal" onclick="showDetails('Rhenium', 75, 186.21, 'Re', 'Transition Metal')">
+  <div class="symbol">Re</div>
+  <div class="number">75</div>
+</div>
+<!-- Osmium -->
+<div class="element group-transition-metal" onclick="showDetails('Osmium', 76, 190.23, 'Os', 'Transition Metal')">
+  <div class="symbol">Os</div>
+  <div class="number">76</div>
+</div>
+<!-- Iridium -->
+<div class="element group-transition-metal" onclick="showDetails('Iridium', 77, 192.22, 'Ir', 'Transition Metal')">
+  <div class="symbol">Ir</div>
+  <div class="number">77</div>
+</div>
+<!-- Platinum -->
+<div class="element group-transition-metal" onclick="showDetails('Platinum', 78, 195.08, 'Pt', 'Transition Metal')">
+  <div class="symbol">Pt</div>
+  <div class="number">78</div>
+</div>
+<!-- Gold -->
+<div class="element group-transition-metal" onclick="showDetails('Gold', 79, 196.97, 'Au', 'Transition Metal')">
+  <div class="symbol">Au</div>
+  <div class="number">79</div>
+</div>
+<!-- Mercury -->
+<div class="element group-transition-metal" onclick="showDetails('Mercury', 80, 200.59, 'Hg', 'Transition Metal')">
+  <div class="symbol">Hg</div>
+  <div class="number">80</div>
+</div>
+<!-- Thallium -->
+<div class="element group-post-transition-metal" onclick="showDetails('Thallium', 81, 204.38, 'Tl', 'Post-Transition Metal')">
+  <div class="symbol">Tl</div>
+  <div class="number">81</div>
+</div>
+<!-- Lead -->
+<div class="element group-post-transition-metal" onclick="showDetails('Lead', 82, 207.2, 'Pb', 'Post-Transition Metal')">
+  <div class="symbol">Pb</div>
+  <div class="number">82</div>
+</div>
+<!-- Bismuth -->
+<div class="element group-post-transition-metal" onclick="showDetails('Bismuth', 83, 208.98, 'Bi', 'Post-Transition Metal')">
+  <div class="symbol">Bi</div>
+  <div class="number">83</div>
+</div>
+<!-- Polonium -->
+<div class="element group-metalloid" onclick="showDetails('Polonium', 84, 209, 'Po', 'Metalloid')">
+  <div class="symbol">Po</div>
+  <div class="number">84</div>
+</div>
+<!-- Astatine -->
+<div class="element group-halogen" onclick="showDetails('Astatine', 85, 210, 'At', 'Halogen')">
+  <div class="symbol">At</div>
+  <div class="number">85</div>
+</div>
+<!-- Radon -->
+<div class="element group-noble-gas" onclick="showDetails('Radon', 86, 222, 'Rn', 'Noble Gas')">
+  <div class="symbol">Rn</div>
+  <div class="number">86</div>
+</div>
+
+ <!-- Francium -->
+<div class="element group-alkali-metal" onclick="showDetails('Francium', 87, 223, 'Fr', 'Alkali Metal')">
+  <div class="symbol">Fr</div>
+  <div class="number">87</div>
+</div>
+
+<!-- Radium -->
+<div class="element group-alkaline-earth-metal" onclick="showDetails('Radium', 88, 226, 'Ra', 'Alkaline Earth Metal')">
+  <div class="symbol">Ra</div>
+  <div class="number">88</div>
+</div>
+<div class="element group-actinide" onclick="showDetails('Actinides')">
+  <div class="symbol">Ac-Lr</div>
+  <div class="number">89-103</div>
+</div>
+
+<!-- Rutherfordium -->
+<div class="element group-transition-metal" onclick="showDetails('Rutherfordium', 104, 267, 'Rf', 'Transition Metal')">
+  <div class="symbol">Rf</div>
+  <div class="number">104</div>
+</div>
+
+<!-- Dubnium -->
+<div class="element group-transition-metal" onclick="showDetails('Dubnium', 105, 270, 'Db', 'Transition Metal')">
+  <div class="symbol">Db</div>
+  <div class="number">105</div>
+</div>
+
+<!-- Seaborgium -->
+<div class="element group-transition-metal" onclick="showDetails('Seaborgium', 106, 271, 'Sg', 'Transition Metal')">
+  <div class="symbol">Sg</div>
+  <div class="number">106</div>
+</div>
+
+<!-- Bohrium -->
+<div class="element group-transition-metal" onclick="showDetails('Bohrium', 107, 270, 'Bh', 'Transition Metal')">
+  <div class="symbol">Bh</div>
+  <div class="number">107</div>
+</div>
+<!-- Hassium -->
+<div class="element group-transition-metal" onclick="showDetails('Hassium', 108, 277, 'Hs', 'Transition Metal')">
+  <div class="symbol">Hs</div>
+  <div class="number">108</div>
+</div>
+
+<!-- Meitnerium -->
+<div class="element group-transition-metal" onclick="showDetails('Meitnerium', 109, 278, 'Mt', 'Transition Metal')">
+  <div class="symbol">Mt</div>
+  <div class="number">109</div>
+</div>
+
+<!-- Darmstadtium -->
+<div class="element group-transition-metal" onclick="showDetails('Darmstadtium', 110, 281, 'Ds', 'Transition Metal')">
+  <div class="symbol">Ds</div>
+  <div class="number">110</div>
+</div>
+
+<!-- Roentgenium -->
+<div class="element group-transition-metal" onclick="showDetails('Roentgenium', 111, 282, 'Rg', 'Transition Metal')">
+  <div class="symbol">Rg</div>
+  <div class="number">111</div>
+</div>
+
+<!-- Copernicium -->
+<div class="element group-transition-metal" onclick="showDetails('Copernicium', 112, 285, 'Cn', 'Transition Metal')">
+  <div class="symbol">Cn</div>
+  <div class="number">112</div>
+</div>
+
+<!-- Nihonium -->
+<div class="element group-post-transition-metal" onclick="showDetails('Nihonium', 113, 286, 'Nh', 'Post-Transition Metal')">
+  <div class="symbol">Nh</div>
+  <div class="number">113</div>
+</div>
+
+<!-- Flerovium -->
+<div class="element group-post-transition-metal" onclick="showDetails('Flerovium', 114, 289, 'Fl', 'Post-Transition Metal')">
+  <div class="symbol">Fl</div>
+  <div class="number">114</div>
+</div>
+
+<!-- Moscovium -->
+<div class="element group-post-transition-metal" onclick="showDetails('Moscovium', 115, 290, 'Mc', 'Post-Transition Metal')">
+  <div class="symbol">Mc</div>
+  <div class="number">115</div>
+</div>
+
+<!-- Livermorium -->
+<div class="element group-post-transition-metal" onclick="showDetails('Livermorium', 116, 293, 'Lv', 'Post-Transition Metal')">
+  <div class="symbol">Lv</div>
+  <div class="number">116</div>
+</div>
+
+<!-- Tennessine -->
+<div class="element group-halogens" onclick="showDetails('Tennessine', 117, 294, 'Ts', 'Halogen')">
+  <div class="symbol">Ts</div>
+  <div class="number">117</div>
+</div>
+
+<!-- Oganesson -->
+<div class="element group-noble-gas" onclick="showDetails('Oganesson', 118, 294, 'Og', 'Noble Gas')">
+  <div class="symbol">Og</div>
+  <div class="number">118</div>
+</div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="element group-lanthanide" onclick="showDetails('Lanthanum', 57, 138.91, 'La', 'Lanthanide')">
+  <div class="symbol">La</div>
+  <div class="number">57</div>
+</div>
+<!-- Cerium -->
+<div class="element group-lanthanide" onclick="showDetails('Cerium', 58, 140.12, 'Ce', 'Lanthanide')">
+  <div class="symbol">Ce</div>
+  <div class="number">58</div>
+</div>
+<!-- Praseodymium -->
+<div class="element group-lanthanide" onclick="showDetails('Praseodymium', 59, 140.91, 'Pr', 'Lanthanide')">
+  <div class="symbol">Pr</div>
+  <div class="number">59</div>
+</div>
+<!-- Neodymium -->
+<div class="element group-lanthanide" onclick="showDetails('Neodymium', 60, 144.24, 'Nd', 'Lanthanide')">
+  <div class="symbol">Nd</div>
+  <div class="number">60</div>
+</div>
+<!-- Promethium -->
+<div class="element group-lanthanide" onclick="showDetails('Promethium', 61, 145, 'Pm', 'Lanthanide')">
+  <div class="symbol">Pm</div>
+  <div class="number">61</div>
+</div>
+<!-- Samarium -->
+<div class="element group-lanthanide" onclick="showDetails('Samarium', 62, 150.36, 'Sm', 'Lanthanide')">
+  <div class="symbol">Sm</div>
+  <div class="number">62</div>
+</div>
+<!-- Europium -->
+<div class="element group-lanthanide" onclick="showDetails('Europium', 63, 151.96, 'Eu', 'Lanthanide')">
+  <div class="symbol">Eu</div>
+  <div class="number">63</div>
+</div>
+<!-- Gadolinium -->
+<div class="element group-lanthanide" onclick="showDetails('Gadolinium', 64, 157.25, 'Gd', 'Lanthanide')">
+  <div class="symbol">Gd</div>
+  <div class="number">64</div>
+</div>
+<!-- Terbium -->
+<div class="element group-lanthanide" onclick="showDetails('Terbium', 65, 158.93, 'Tb', 'Lanthanide')">
+  <div class="symbol">Tb</div>
+  <div class="number">65</div>
+</div>
+<!-- Dysprosium -->
+<div class="element group-lanthanide" onclick="showDetails('Dysprosium', 66, 162.5, 'Dy', 'Lanthanide')">
+  <div class="symbol">Dy</div>
+  <div class="number">66</div>
+</div>
+<!-- Holmium -->
+<div class="element group-lanthanide" onclick="showDetails('Holmium', 67, 164.93, 'Ho', 'Lanthanide')">
+  <div class="symbol">Ho</div>
+  <div class="number">67</div>
+</div>
+<!-- Erbium -->
+<div class="element group-lanthanide" onclick="showDetails('Erbium', 68, 167.26, 'Er', 'Lanthanide')">
+  <div class="symbol">Er</div>
+  <div class="number">68</div>
+</div>
+<!-- Thulium -->
+<div class="element group-lanthanide" onclick="showDetails('Thulium', 69, 168.93, 'Tm', 'Lanthanide')">
+  <div class="symbol">Tm</div>
+  <div class="number">69</div>
+</div>
+<!-- Ytterbium -->
+<div class="element group-lanthanide" onclick="showDetails('Ytterbium', 70, 173.04, 'Yb', 'Lanthanide')">
+  <div class="symbol">Yb</div>
+  <div class="number">70</div>
+</div>
+<!-- Lutetium -->
+<div class="element group-lanthanide" onclick="showDetails('Lutetium', 71, 174.97, 'Lu', 'Lanthanide')">
+  <div class="symbol">Lu</div>
+  <div class="number">71</div>
+</div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+
+  
+    <!-- Actinides Row -->
+    
+  <div class="element group-actinide" onclick="showDetails('Actinium', 89, 227, 'Ac', 'Actinide')">
+    <div class="symbol">Ac</div>
+    <div class="number">89</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Thorium', 90, 232.04, 'Th', 'Actinide')">
+    <div class="symbol">Th</div>
+    <div class="number">90</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Protactinium', 91, 231.04, 'Pa', 'Actinide')">
+    <div class="symbol">Pa</div>
+    <div class="number">91</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Uranium', 92, 238.03, 'U', 'Actinide')">
+    <div class="symbol">U</div>
+    <div class="number">92</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Neptunium', 93, 237, 'Np', 'Actinide')">
+    <div class="symbol">Np</div>
+    <div class="number">93</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Plutonium', 94, 244, 'Pu', 'Actinide')">
+    <div class="symbol">Pu</div>
+    <div class="number">94</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Americium', 95, 243, 'Am', 'Actinide')">
+    <div class="symbol">Am</div>
+    <div class="number">95</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Curium', 96, 247, 'Cm', 'Actinide')">
+    <div class="symbol">Cm</div>
+    <div class="number">96</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Berkelium', 97, 247, 'Bk', 'Actinide')">
+    <div class="symbol">Bk</div>
+    <div class="number">97</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Californium', 98, 251, 'Cf', 'Actinide')">
+    <div class="symbol">Cf</div>
+    <div class="number">98</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Einsteinium', 99, 252, 'Es', 'Actinide')">
+    <div class="symbol">Es</div>
+    <div class="number">99</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Fermium', 100, 257, 'Fm', 'Actinide')">
+    <div class="symbol">Fm</div>
+    <div class="number">100</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Mendelevium', 101, 258, 'Md', 'Actinide')">
+    <div class="symbol">Md</div>
+    <div class="number">101</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Nobelium', 102, 259, 'No', 'Actinide')">
+    <div class="symbol">No</div>
+    <div class="number">102</div>
+  </div>
+  <div class="element group-actinide" onclick="showDetails('Lawrencium', 103, 262, 'Lr', 'Actinide')">
+    <div class="symbol">Lr</div>
+    <div class="number">103</div>
+  </div>
+
+      <!-- Add more elements similarly -->
+    </div>
+    
+      
+        
+
+</div>
+      
+    </div>
+
+    <div id="element-details">
+      <h2>Element Details</h2>
+      <p id="details"></p>
+    </div>
+  </div>
+
+  <script>
+    function showDetails(name, atomicNumber, massNumber, symbol, properties) {
+      const details = `
+        <strong>Name:</strong> ${name} <br>
+        <strong>Atomic Number:</strong> ${atomicNumber} <br>
+        <strong>Mass Number:</strong> ${massNumber} <br>
+        <strong>Symbol:</strong> ${symbol} <br>
+        <strong>Properties:</strong> ${properties}
+      `;
+      document.getElementById("details").innerHTML = details;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newton's Laws of Motion</title>
+    <link rel="stylesheet" href="grav.css">
+</head>
+<body>
+    <div id="container">
+        <h1>NEWTON'S LAWS OF MOTION</h1>
+        <div id="laws-container">
+            <!-- First Law Card -->
+            <div class="law-card">
+                <h2>First Law: Law of Inertia</h2>
+                <p>An object remains at rest or in uniform motion unless acted upon by an external force.</p>
+                <div class="simulation">
+                    <div id="object1" class="object"></div>
+                    <button onclick="applyForceToFirst()">Apply Force</button>
+                    
+                </div>
+                <p>Example:
+                <br> 1. Ball rolling on the ground eventually stops because of friction, which acts as an external force. Without friction (e.g., in space), the ball would continue rolling indefinitely.<br>
+                2. A book placed on a table will remain stationary until someone pushes it (external force). The book resists the change in its state of rest due to inertia.
+                </p>
+            </div>
+            
+
+            <!-- Second Law Card -->
+            <div class="law-card">
+                <h2>Second Law: F = ma</h2>
+                <p>The force acting on an object is equal to its mass times its acceleration.</p>
+                <label for="mass">Mass (kg):</label>
+                <input type="range" id="mass" min="1" max="10" value="5" oninput="updateSecondLaw()">
+                <span id="mass-value">5</span> kg
+
+                <label for="acceleration">Acceleration (m/s²):</label>
+                <input type="range" id="acceleration" min="1" max="10" value="2" oninput="updateSecondLaw()">
+                <span id="acceleration-value">2</span> m/s²
+
+                <div class="simulation">
+                    <div id="object2" class="object"></div>
+                    <button onclick="applyForceToSecond()">Apply Force</button>
+                </div>
+                <p>Eg:If you push an empty shopping cart, it accelerates quickly because its mass is small. A heavily loaded cart accelerates slower even with the same amount of force due to its greater mass.</p>
+                <p><strong>Force (F):</strong> <span id="force-value">10</span> N</p>
+                <p><em>Formula:</em> F = ma</p>
+            </div>
+
+            <!-- Third Law Card -->
+            <div class="law-card">
+                <h2>Third Law: Action and Reaction</h2>
+                <p>For every action, there is an equal and opposite reaction.</p>
+                <div class="simulation">
+                    <div id="boat" class="boat"></div>
+                    <div id="person" class="person"></div>
+                    <button onclick="applyThirdLaw()">Jump</button>
+                    
+                </div>
+                <p> Example: A boat moves backward when you jump off it</p>
+                <p><strong>Action Force:</strong> <span id="action-force-value">0</span> N</p>
+                <p><strong>Reaction Force:</strong> <span id="reaction-force-value">0</span> N</p>
+            </div>
+           
+        </div>
+        
+    </div>
+
+    <script>
+        // First Law: Apply force to move an object
+        function applyForceToFirst() {
+            const object1 = document.getElementById("object1");
+            object1.style.transform = "translateX(200px)";
+            object1.style.transition = "transform 2s";
+            setTimeout(() => {
+                object1.style.transform = "translateX(0)";
+            }, 3000);
+        }
+
+        // Second Law: Update mass and acceleration, and calculate force
+        function updateSecondLaw() {
+            const mass = document.getElementById("mass").value;
+            const acceleration = document.getElementById("acceleration").value;
+            const force = mass * acceleration;
+
+            document.getElementById("mass-value").innerText = mass;
+            document.getElementById("acceleration-value").innerText = acceleration;
+            document.getElementById("force-value").innerText = force;
+        }
+
+        function applyForceToSecond() {
+            const object2 = document.getElementById("object2");
+            object2.style.transform = "translateX(200px)";
+            object2.style.transition = "transform 2s";
+            setTimeout(() => {
+                object2.style.transform = "translateX(0)";
+            }, 3000);
+        }
+
+        // Third Law: Apply action and reaction
+        function applyThirdLaw() {
+            const actionForce = 10; // arbitrary force value
+            const reactionForce = -10; // equal and opposite
+
+            document.getElementById("action-force-value").innerText = actionForce + " N";
+            document.getElementById("reaction-force-value").innerText = Math.abs(reactionForce) + " N";
+
+            const boat = document.getElementById("boat");
+            const person = document.getElementById("person");
+
+            boat.style.transform = "translateX(-100px)";
+            person.style.transform = "translateX(200px)";
+            boat.style.transition = "transform 2s";
+            person.style.transition = "transform 2s";
+
+            setTimeout(() => {
+                boat.style.transform = "translateX(0)";
+                person.style.transform = "translateX(0)";
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

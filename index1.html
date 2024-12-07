@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Health for Rural Areas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- First Screen (Login/Register) -->
+    <div class="container" id="loginScreen">
+        <h1>Welcome to Smart Health</h1>
+        <button onclick="showLoginForm()">Login</button>
+        <button onclick="showRegisterForm()">Register</button>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="container" id="registerFormScreen" style="display:none;">
+        <h1>Register</h1>
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name"><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" placeholder="Enter your location"><br>
+
+        <label for="phone">Phone Number/Unique ID:</label>
+        <input type="text" id="phone/unique ID" placeholder="Enter your phone number/Unique ID"><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Create a password"><br>
+
+        <label for="medicalIssues">Previous Medical Issues:</label>
+        <textarea id="medicalIssues" placeholder="Enter any previous medical issues"></textarea><br>
+
+        <label for="reportUpload">Upload Medical Report (optional):</label>
+        <input type="file" id="reportUpload" accept=".pdf,.jpg,.jpeg,.png"><br>
+
+        <button onclick="registerUser()">Register</button>
+        <button onclick="goBackToLogin()">Back</button>
+    </div>
+
+    <!-- Login Form -->
+    <div class="container" id="loginFormScreen" style="display:none;">
+        <h1>Login</h1>
+        <label for="loginPhone">Phone Number/Unique ID:</label>
+        <input type="text" id="loginPhone" placeholder="Enter your phone number/Unique Id"><br>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" placeholder="Enter your password"><br>
+
+        <button onclick="loginUser()">Login</button>
+        <button onclick="goBackToLogin()">Back</button>
+    </div>
+
+    <!-- Health Checkup -->
+    <div class="container" id="healthCheckupScreen" style="display:none;">
+        <h1>Health Checkup</h1>
+        <label for="age">Age:</label>
+        <input type="text" id="Age" placeholder="Enter Age"><br>
+
+        <label for="bp">Blood Pressure:</label>
+        <input type="text" id="bp" placeholder="Enter BP"><br>
+
+        <label for="weight">Weight (kg):</label>
+        <input type="text" id="weight" placeholder="Enter weight"><br>
+
+        <label for="height">Height (cm):</label>
+        <input type="text" id="height" placeholder="Enter height"><br>
+
+        <button onclick="connectToDoctor()">Connect to Doctor</button>
+        <button onclick="goBackToLogin()">Back</button>
+    </div>
+
+    <!-- Doctor's Decision-->
+    <div class="container" id="doctorScreen" style="display:none;">
+        <h1>Doctor's Checkup</h1>
+        <p id="doctorMessage"></p>
+        <button onclick="sendAmbulance()" id="ambulanceBtn" style="display:none;">Send Ambulance</button>
+        <button onclick="printPrescription()" id="prescriptionBtn" style="display:none;">Print Prescription</button>
+        <button onclick="sendPrescriptionToMobile()" id="mobileBtn" style="display:none;">Send to Mobile App</button>
+        <button onclick="startVideoCall()" id="videoCallBtn" style="display:none;">Start Video Call</button>
+        <button onclick="goBackToCheckup()">Back</button>
+    </div>
+
+    <!-- Prescription Printout -->
+    <div class="container" id="prescriptionScreen" style="display:none;">
+        <h1>Prescription</h1>
+        <p>Your prescription has been printed. Medicine will be delivered shortly.</p>
+        <button onclick="window.print()">Print Now</button>
+        <button onclick="goBackToDoctor()">Back</button>
+    </div>
+
+    <script>
+        // Store registered users in localStorage
+        function getRegisteredUsers() {
+            return JSON.parse(localStorage.getItem('users')) || {};
+        }
+
+        function setRegisteredUsers(users) {
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        // Show registration form
+        function showRegisterForm() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('registerFormScreen').style.display = 'block';
+        }
+
+        // Show login form
+        function showLoginForm() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('loginFormScreen').style.display = 'block';
+        }
+
+        // Go back to login screen from other screens
+        function goBackToLogin() {
+            document.getElementById('registerFormScreen').style.display = 'none';
+            document.getElementById('loginFormScreen').style.display = 'none';
+            document.getElementById('healthCheckupScreen').style.display = 'none';
+            document.getElementById('doctorScreen').style.display = 'none';
+            document.getElementById('prescriptionScreen').style.display = 'none';
+            document.getElementById('loginScreen').style.display = 'block';
+        }
+
+        // Go back to health checkup from doctor's screen
+        function goBackToCheckup() {
+            document.getElementById('doctorScreen').style.display = 'none';
+            document.getElementById('healthCheckupScreen').style.display = 'block';
+        }
+
+        // Go back to doctor's screen from prescription screen
+        function goBackToDoctor() {
+            document.getElementById('prescriptionScreen').style.display = 'none';
+            document.getElementById('doctorScreen').style.display = 'block';
+        }
+
+        // Register the user
+        function registerUser() {
+            let name = document.getElementById('name').value;
+            let location = document.getElementById('location').value;
+            let phone = document.getElementById('phone').value;
+            let password = document.getElementById('password').value;
+            let medicalIssues = document.getElementById('medicalIssues').value;
+            let reportUpload = document.getElementById('reportUpload').files[0];
+
+            if (name && location && phone && password) {
+                let users = getRegisteredUsers();
+                if (users[phone]) {
+                    alert('User with this phone number already exists.');
+                } else {
+                    users[phone] = { name, location, password, medicalIssues };  // Store user details
+                    setRegisteredUsers(users);
+                    alert('Registration successful! You can now log in.');
+                    goBackToLogin();  // Go back to login screen after registration
+
+                    // Optionally handle file upload (not implemented here)
+                    if (reportUpload) {
+                        console.log("Report uploaded:", reportUpload.name);
+                    }
+                }
+            } else {
+                alert('Please fill all fields.');
+            }
+        }
+
+        // Log in the user
+        function loginUser() {
+            let loginPhone = document.getElementById('loginPhone').value;
+            let loginPassword = document.getElementById('loginPassword').value;
+
+            let users = getRegisteredUsers();
+
+            if (users[loginPhone] && users[loginPhone].password === loginPassword) {
+                alert('Login successful! Proceed to health checkup.');
+                document.getElementById('loginFormScreen').style.display = 'none';
+                document.getElementById('healthCheckupScreen').style.display = 'block';
+            } else {
+                alert('Invalid phone number or password.');
+            }
+        }
+
+        // Simulate connecting to a doctor and doctor’s decision
+        function connectToDoctor() {
+            document.getElementById('healthCheckupScreen').style.display = 'none';
+            document.getElementById('doctorScreen').style.display = 'block';
+
+            let bp = parseFloat(document.getElementById('bp').value);
+            let weight = parseFloat(document.getElementById('weight').value);
+            let height = parseFloat(document.getElementById('height').value);
+
+            // Simulate doctor's decision based on BP
+            if (bp > 140) {
+                document.getElementById('doctorMessage').innerText = 'High BP detected. Emergency! Sending ambulance!';
+                document.getElementById('ambulanceBtn').style.display = 'block';
+                sendAmbulance();
+            } else if (bp < 90) {
+                document.getElementById('doctorMessage').innerText = 'Low BP detected. The doctor will provide guidance.';
+                // Optional: Add logic for low BP (e.g., send a specific message or medication)
+                prescribeMedication("Increase fluid intake and rest.");
+            } else if (bp > 120) {
+                // Slightly elevated BP
+                document.getElementById('doctorMessage').innerText = 'Slightly elevated BP detected. The doctor will prescribe medication.';
+                setTimeout(() => {
+                    prescribeMedication("Lisinopril 10mg daily.");
+                }, 2000);
+                document.getElementById('videoCallBtn').style.display = 'block';
+            } else {
+                document.getElementById('doctorMessage').innerText = 'All readings are normal. No medication needed.';
+                document.getElementById('prescriptionBtn').style.display = 'block';
+                document.getElementById('mobileBtn').style.display = 'block';
+            }
+        }
+
+        // Function to prescribe medication
+        function prescribeMedication(medication) {
+            document.getElementById('doctorMessage').innerText += ` Prescribed medication: ${medication}`;
+            document.getElementById('prescriptionBtn').style.display = 'block';
+            document.getElementById('mobileBtn').style.display = 'block';
+
+            // Automatically send to mobile app and mobile number
+            sendPrescriptionToMobile();
+            sendPrescriptionToMobileNumber();
+        }
+
+        // Placeholder function for video call
+        function startVideoCall() {
+            alert('Connecting to the doctor via video call...');
+            // Here you would integrate your video call logic
+        }
+
+        function sendAmbulance() {
+            alert('Ambulance is on the way!');
+        }
+
+        function printPrescription() {
+            document.getElementById('doctorScreen').style.display = 'none';
+            document.getElementById('prescriptionScreen').style.display = 'block';
+        }
+
+        function sendPrescriptionToMobile() {
+            alert('Prescription has been sent to your mobile app!');
+        }
+
+        function sendPrescriptionToMobileNumber() {
+            alert('Prescription has been sent to your mobile number!');
+        }
+    </script>
+</body>
+</html>

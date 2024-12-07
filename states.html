@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive States of Matter</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f9f9f9;
+    }
+    h1 {
+      margin: 20px 0;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .state {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/57/Rubiks_cube.svg');
+      background-size: cover;
+      background-position: center;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .state:hover {
+      transform: scale(1.1);
+    }
+    .zoom-view {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 400px;
+      background: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      border: 2px solid #3498db;
+      z-index: 10;
+      padding: 20px;
+    }
+    .zoom-view canvas {
+      width: 100%;
+      height: 200px;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      font-size: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .info {
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    .state-label {
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Interactive States of Matter</h1>
+  <div class="container">
+    <div class="state" data-state="solid" onclick="showZoomView('solid')">
+      <p>Solid</p>
+    </div>
+    <div class="state" data-state="liquid" onclick="showZoomView('liquid')">
+      <p>Liquid</p>
+    </div>
+    <div class="state" data-state="gas" onclick="showZoomView('gas')">
+      <p>Gas</p>
+    </div>
+  </div>
+
+  <div class="zoom-view" id="zoomView">
+    <button class="close" onclick="closeZoomView()">Close</button>
+    <canvas id="particleCanvas"></canvas>
+    <div id="infoText" class="info"></div>
+  </div>
+
+  <script>
+    const zoomView = document.getElementById("zoomView");
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+    const infoText = document.getElementById("infoText");
+    let animationFrame;
+
+    const particleCount = 100;
+    const particles = [];
+
+    function showZoomView(state) {
+      zoomView.style.display = "block";
+      createParticles(state);
+      updateInfo(state);
+    }
+
+    function closeZoomView() {
+      zoomView.style.display = "none";
+      cancelAnimationFrame(animationFrame);
+    }
+
+    function createParticles(state) {
+      particles.length = 0;
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: Math.random() - 0.5,
+          vy: Math.random() - 0.5,
+          radius: state === "solid" ? 5 : state === "liquid" ? 7 : 4,
+          color: state === "solid"
+            ? "#1abc9c"
+            : state === "liquid"
+            ? "#3498db"
+            : "#e74c3c",
+        });
+      }
+
+      if (state === "solid") {
+        arrangeSolidParticles();
+      } else if (state === "liquid") {
+        animateLiquidParticles();
+      } else if (state === "gas") {
+        animateGasParticles();
+      }
+    }
+
+    function arrangeSolidParticles() {
+      const cols = 10;
+      const rows = Math.ceil(particleCount / cols);
+      const spacing = canvas.width / cols;
+      let index = 0;
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols && index < particleCount; x++) {
+          particles[index].x = x * spacing + spacing / 2;
+          particles[index].y = y * spacing + spacing / 2;
+          index++;
+        }
+      }
+      drawParticles();
+    }
+
+    function animateLiquidParticles() {
+      function update() {
+        particles.forEach((p) => {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        });
+
+        drawParticles();
+        animationFrame = requestAnimationFrame(update);
+      }
+      update();
+    }
+
+    function animateGasParticles() {
+      function update() {
+        particles.forEach((p) => {
+          p.x += p.vx * 2;
+          p.y += p.vy * 2;
+
+          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        });
+
+        drawParticles();
+        animationFrame = requestAnimationFrame(update);
+      }
+      update();
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        ctx.closePath();
+      });
+    }
+
+    // Update the info text for each state
+    function updateInfo(state) {
+      if (state === "solid") {
+        infoText.innerHTML = `
+          <strong>Solid:</strong><br>
+          In a solid, particles are closely packed together in a fixed arrangement. 
+          They vibrate in place but do not move from their fixed positions.
+        `;
+      } else if (state === "liquid") {
+        infoText.innerHTML = `
+          <strong>Liquid:</strong><br>
+          In a liquid, particles are still close together, but they can move around each other. 
+          Liquids have a fixed volume but can change shape.
+        `;
+      } else if (state === "gas") {
+        infoText.innerHTML = `
+          <strong>Gas:</strong><br>
+          In a gas, particles are far apart and move freely. 
+          Gases do not have a fixed shape or volume and expand to fill any container.
+        `;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .row {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    justify-content: flex-start;
+    position: relative;
+  }
+  
+  .row.lanthanides {
+    background-color: #e0f7fa; /* Light blue for Lanthanides */
+  }
+  
+  .row.actinides {
+    background-color: #ffe0b2; /* Light orange for Actinides */
+  }
+  
+  .row-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px;
+    padding: 5px 15px;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+  
+  h1 {
+    margin-bottom: 10px;
+  }
+  
+  .periodic-table {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    row-gap: 5px;
+    column-gap:0px;
+    margin-top: 20px;
+  }
+  .element {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 70px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  
+  .element .symbol {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .element .number {
+    font-size: 12px;
+  }
+  
+  .group-nonmetal {
+    background-color: #4caf50;
+  }
+  
+  .group-noble-gas {
+    background-color: #2196f3;
+  }
+  
+  .group-alkali-metal {
+    background-color: #ff5722;
+  }
+  
+  .group-alkaline-earth-metal {
+    background-color: #ffc107;
+  }
+  
+  .group-other-nonmetal {
+    background-color: #9c27b0;
+  }
+  
+  .spacer {
+    visibility: hidden;
+  }
+  
+  #element-details {
+    margin-top: 20px;
+    text-align: left;
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #details {
+    font-size: 16px;
+  }
+/* General Styling */
+.details-box {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+} 
+  
+ 
+  
+  .element:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .symbol {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .number {
+    font-size: 12px;
+    color: #555;
+  }
+  
+  /* Group Colors */
+  .group-alkali-metal {
+    background-color: #ffcccc;
+  }
+  
+  .group-alkaline-earth-metal {
+    background-color: #ffcc99;
+  }
+  
+  .group-transition-metal {
+    background-color: #ccccff;
+  }
+  
+  .group-post-transition-metal {
+    background-color: #cccccc;
+  }
+  
+  .group-metalloid {
+    background-color: #ccffcc;
+  }
+  
+  .group-other-nonmetal {
+    background-color: #ffffcc;
+  }
+  
+  .group-halogen {
+    background-color: #ffb3ff;
+  }
+  
+  .group-noble-gas {
+    background-color: #b3e6ff;
+  }
+    
+  
+ 
+  

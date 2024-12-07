@@ -1,0 +1,132 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-image:url(orange.webp);
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    margin-left:-20px;
+}
+
+h1 {
+    color: #130000;
+    margin-bottom: 20px;
+    margin-top:-20px;
+    background-color:skyblue;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 40px;
+    letter-spacing: 10px;
+}
+
+p {
+    color: #090000;
+    margin-bottom: 10px;
+}
+
+#container {
+   width: 102%;
+   height: auto;
+    background-color:transparent;
+    justify-content: center;
+     
+   
+    
+    
+}
+
+/* Laws Container */
+#laws-container {
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+}
+
+/* Law Card */
+.law-card {
+    width: 25%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: left;
+    transition: transform 0.3s ease;
+  
+    
+    
+}
+
+.law-card:hover {
+    transform: scale(1.05);
+}
+
+/* Simulation */
+.simulation {
+    position: relative;
+    height: 150px;
+    margin: 20px 0;
+    background: #eef;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.object {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: #3498db;
+    border-radius: 50%;
+    top: 55px;
+    left: 20px;
+}
+
+.boat {
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    background: #27ae60;
+    border-radius: 10px;
+    top: 60px;
+    left: 20px;
+}
+
+.person {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: #e74c3c;
+    border-radius: 50%;
+    top: 25px;
+    left: 100px;
+}
+
+/* Controls */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+/* Output */
+#force-value, #action-force-value, #reaction-force-value {
+    font-weight: bold;
+    color: #333;
+}

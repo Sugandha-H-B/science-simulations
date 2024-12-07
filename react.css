@@ -1,0 +1,106 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #555;
+}
+
+#container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+#reaction-types button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#reaction-types button:hover {
+    background-color: #2980b9;
+}
+
+#reaction-container {
+    margin-top: 20px;
+    text-align:center;
+}
+
+#controls label {
+    margin-right: 5px;
+}
+
+#controls select {
+    margin: 5px;
+    padding: 5px;
+}
+
+#simulation {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px;
+    background: #eef;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+}
+
+.beaker {
+    width: 100px;
+    height: 150px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.liquid {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    bottom: 0;
+    background-color: #ccc;
+}
+
+button#react-button {
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    
+}
+
+button#react-button:hover {
+    background-color: #c0392b;
+    
+}
+
+#reaction-result, #reaction-equation {
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+    font-weight: bold;
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acids, Bases, and pH Scale</title>
+  <link rel="stylesheet" href="acid.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Acids, Bases, and the pH Scale</h1>
+    <p class="description">
+      The pH scale measures the acidity or basicity of a substance. Substances with a pH less than 7 are **acidic**, substances with a pH of 7 are **neutral**, and those with a pH greater than 7 are **basic**. Here's a list of common substances and their pH levels.
+    </p>
+
+    <h2>Acids</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Substance</th>
+          <th>Type of Acid</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lemon Juice</td>
+          <td>Citric Acid</td>
+          <td><button onclick="showDetails('Lemon Juice', 2, '#ff8000')">Check pH</button></td>
+        </tr>
+        <tr>
+          <td>Vinegar</td>
+          <td>Acetic Acid</td>
+          <td><button onclick="showDetails('Vinegar', 3, '#ffa500')">Check pH</button></td>
+        </tr>
+        <tr>
+          <td>Tomato Juice</td>
+          <td>Ascorbic Acid</td>
+          <td><button onclick="showDetails('Tomato Juice', 4, '#ffff00')">Check pH</button></td>
+        </tr>
+        <tr>
+          <td>Soft Drink</td>
+          <td>Carbonic Acid</td>
+          <td><button onclick="showDetails('Soft Drink', 4, '#ffff00')">Check pH</button></td>
+        </tr>
+        <tr>
+          <td>Milk</td>
+          <td>Lactic Acid</td>
+          <td><button onclick="showDetails('Milk', 6, '#66ff66')">Check pH</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Bases</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Substance</th>
+          <th>Type of Base</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Soap</td>
+          <td>Sodium Hydroxide</td>
+          <td><button onclick="showDetails('Soap', 10, '#3366ff')">Check pH</button></td>
+        </tr>
+        <tr>
+          <td>Baking Soda</td>
+          <td>Sodium Bicarbonate</td>
+          <td><button onclick="showDetails('Baking Soda', 9, '#66b3ff')">Check pH</button></td>
+        </tr>
+        <tr>
+          <td>Toothpaste</td>
+          <td>Sodium Fluoride</td>
+          <td><button onclick="showDetails('Toothpaste', 9, '#6699ff')">Check pH</button></td>
+        </tr>
+        <tr>
+          <td>Ammonia Solution</td>
+          <td>Ammonium Hydroxide</td>
+          <td><button onclick="showDetails('Ammonia Solution', 11, '#3300ff')">Check pH</button></td>
+        </tr>
+        <tr>
+          <td>Bleach</td>
+          <td>Sodium Hypochlorite</td>
+          <td><button onclick="showDetails('Bleach', 13, 'rgb(180, 100, 180)')">Check pH</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="visualization">
+      <h3 id="substance-name">Select a substance to see details</h3>
+      <div id="beaker" class="beaker">
+        <p class="ph-value">pH: <span id="ph-value">--</span></p>
+      </div>
+      <p id="ph-description" class="ph-description"></p>
+    </div>
+
+    <div class="ph-scale">
+      <h3>pH Scale</h3>
+      <div class="scale">
+        <div class="ph" style="background-color: #ff0000;">0</div>
+        <div class="ph" style="background-color: rgb(253, 4, 129);">1</div>
+        <div class="ph" style="background-color: #ff8000;">2</div>
+        <div class="ph" style="background-color: #ffa500;">3</div>
+        <div class="ph" style="background-color: #ffff00;">4</div>
+        <div class="ph" style="background-color: #ccff66;">5</div>
+        <div class="ph" style="background-color: #66ff66;">6</div>
+        <div class="ph" style="background-color: green;">7</div>
+        <div class="ph" style="background-color: darkgreen;">8</div>
+        <div class="ph" style="background-color: #6699ff;">9</div>
+        <div class="ph" style="background-color: #3366ff;">10</div>
+        <div class="ph" style="background-color: #3300ff ;">11</div>
+        <div class="ph" style="background-color: #6600cc;">12</div>
+        <div class="ph" style="background-color: rgb(180, 100, 180);">13</div>
+        <div class="ph" style="background-color: #6f026f;">14</div>
+      </div>
+    </div>
+  </div>
+
+  <script >
+    function showDetails(substance, ph, color) {
+    document.getElementById('substance-name').textContent = substance;
+    document.getElementById('ph-value').textContent = ph;
+    document.getElementById('beaker').style.backgroundColor = color;
+  
+    const description = ph < 7 ? 'acidic' : ph > 7 ? 'basic' : 'neutral';
+    document.getElementById('ph-description').textContent = `${substance} is ${description} with a pH of ${ph}.`;
+  }
+  </script>
+</body>
+</html>

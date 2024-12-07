@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Motor and Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 45%;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .diagram {
+            position: relative;
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+            border: 2px solid #333;
+            border-radius: 50%;
+        }
+
+        .coil {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 10px;
+            background: #007bff;
+            transform: translate(-50%, -50%);
+            animation: rotate-clockwise 3s linear infinite;
+        }
+
+        .arrow {
+            position: absolute;
+            font-size: 20px;
+            color: #e63946;
+        }
+
+        .arrow.left {
+            top: 40%;
+            left: 5%;
+            transform: rotate(-45deg);
+        }
+
+        .arrow.right {
+            top: 40%;
+            right: 5%;
+            transform: rotate(45deg);
+        }
+
+        .shaft {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: #333;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .info {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        @keyframes rotate-clockwise {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @keyframes rotate-counterclockwise {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(-360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Motor and Generator</h1>
+    <div class="container">
+        <!-- Motor Visualization -->
+        <div class="card">
+            <h2>Electric Motor</h2>
+            <div class="diagram">
+                <div class="coil motor-coil"></div>
+                <div class="shaft"></div>
+                <div class="arrow left">↺</div>
+                <div class="arrow right">↻</div>
+            </div>
+            <p class="info">
+                An electric motor converts electrical energy into mechanical energy. 
+            </p>
+            <div class="buttons">
+                <button onclick="changeDirection('motor-coil')">Toggle Direction</button>
+                <button onclick="changeSpeed('motor-coil')">Increase Speed</button>
+            </div>
+        </div>
+
+        <!-- Generator Visualization -->
+        <div class="card">
+            <h2>Electric Generator</h2>
+            <div class="diagram">
+                <div class="coil generator-coil"></div>
+                <div class="shaft"></div>
+                <div class="arrow left">↺</div>
+                <div class="arrow right">↻</div>
+            </div>
+            <p class="info">
+                An electric generator converts mechanical energy into electrical energy. 
+            </p>
+            <div class="buttons">
+                <button onclick="changeDirection('generator-coil')">Toggle Direction</button>
+                <button onclick="changeSpeed('generator-coil')">Increase Speed</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle rotation direction
+        function changeDirection(coilClass) {
+            const coil = document.querySelector(`.${coilClass}`);
+            const currentAnimation = window.getComputedStyle(coil).animationName;
+
+            if (currentAnimation === 'rotate-clockwise') {
+                coil.style.animationName = 'rotate-counterclockwise';
+            } else {
+                coil.style.animationName = 'rotate-clockwise';
+            }
+        }
+
+        // Increase rotation speed
+        function changeSpeed(coilClass) {
+            const coil = document.querySelector(`.${coilClass}`);
+            const currentDuration = parseFloat(window.getComputedStyle(coil).animationDuration);
+
+            // Reduce duration to increase speed
+            if (currentDuration > 1) {
+                coil.style.animationDuration = `${currentDuration - 0.5}s`;
+            }
+        }
+    </script>
+</body>
+</html>

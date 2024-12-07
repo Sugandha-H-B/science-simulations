@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Chemical Reactions</title>
+    <link rel="stylesheet" href="react.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Types of Chemical Reactions</h1>
+        <p>Select a reaction type and explore interactive examples!</p>
+
+        <div id="reaction-types">
+            <button onclick="showReaction('combination')">Combination Reaction</button>
+            <button onclick="showReaction('decomposition')">Decomposition Reaction</button>
+            <button onclick="showReaction('displacement')">Displacement Reaction</button>
+            <button onclick="showReaction('neutralization')">Neutralization Reaction</button>
+            <button onclick="showReaction('doubleDisplacement')">Double Displacement Reaction</button>
+            <button onclick="showReaction('oxidationReduction')">Oxidation-Reduction Reaction</button>
+        </div>
+        
+
+        <div id="reaction-container">
+            <h2 id="reaction-title"></h2>
+            <p id="reaction-description"></p>
+
+            <div id="controls">
+                <label for="reactant1">Select Reactant 1:</label>
+                <select id="reactant1" onchange="updateReactants()"></select>
+                <label for="reactant2">Select Reactant 2:</label>
+                <select id="reactant2" onchange="updateReactants()"></select>
+            </div>
+
+            <div id="simulation">
+                <div class="beaker" id="reactant-beaker1">
+                    <div class="liquid" id="liquid1"></div>
+                </div>
+                <span id="reactant-plus">+</span>
+                <div class="beaker" id="reactant-beaker2">
+                    <div class="liquid" id="liquid2"></div>
+                </div>
+                <span id="reaction-arrow">→</span>
+                <div id="product-beakers"></div>
+            </div>
+
+            <button id="react-button" onclick="performReaction()">React</button>
+            <p id="reaction-result"></p>
+            <p id="reaction-equation"></p>
+        </div>
+    </div>
+
+    <script>
+        const reactions = {
+            combination: {
+                title: "Combination Reaction",
+                description: "Two or more substances combine to form a single compound.",
+                examples: [
+                    { reactant1: "2H₂", reactant2: "O₂", products: ["2H₂O"], colors: ["blue"] },
+                    { reactant1: "2Na", reactant2: "Cl₂", products: ["2NaCl"], colors: ["green"] },
+                    { reactant1: "C", reactant2: "O₂", products: ["CO₂"], colors: ["gray"] }
+                ]
+            },
+            decomposition: {
+                title: "Decomposition Reaction",
+                description: "A single compound breaks down into two or more substances.",
+                examples: [
+                    { reactant1: "H₂O₂", reactant2: "", products: ["H₂", "O₂"], colors: ["yellow", "blue"] },
+                    { reactant1: "CaCO₃", reactant2: "", products: ["CaO", "CO₂"], colors: ["orange", "gray"] },
+                    { reactant1: "NH₄Cl", reactant2: "", products: ["NH₃", "HCl"], colors: ["pink", "purple"] }
+                ]
+            },
+            displacement: {
+                title: "Displacement Reaction",
+                description: "An element displaces another element from a compound.",
+                examples: [
+                    { reactant1: "Fe", reactant2: "CuSO₄", products: ["FeSO₄", "Cu"], colors: ["red", "brown"] },
+                    { reactant1: "Zn", reactant2: "2HCl", products: ["ZnCl₂", "H₂"], colors: ["purple", "lime"] },
+                    { reactant1: "Mg", reactant2: "H₂SO₄", products: ["MgSO₄", "H₂"], colors: ["lime", "gray"] }
+                ]
+            },
+            neutralization: {
+                title: "Neutralization Reaction",
+                description: "An acid reacts with a base to form salt and water.",
+                examples: [
+                    { reactant1: "HCl", reactant2: "NaOH", products: ["NaCl", "H₂O"], colors: ["teal", "blue"] },
+                    { reactant1: "H₂SO₄", reactant2: "KOH", products: ["K₂SO₄", "H₂O"], colors: ["pink", "blue"] },
+                    { reactant1: "CH₃COOH", reactant2: "NH₄OH", products: ["CH₃COONH₄", "H₂O"], colors: ["cyan", "blue"] }
+                ]
+            },
+            doubleDisplacement: {
+                title: "Double Displacement Reaction",
+                description: "Two compounds exchange ions to form two new compounds.",
+                examples: [
+                    { 
+                        reactant1: "Na₂SO₄", 
+                        reactant2: "BaCl₂", 
+                        products: ["BaSO₄", "2NaCl"], 
+                        colors: ["white", "green"] 
+                    },
+                    { 
+                        reactant1: "AgNO₃", 
+                        reactant2: "NaCl", 
+                        products: ["AgCl", "NaNO₃"], 
+                        colors: ["white", "blue"] 
+                    },
+                    { 
+                        reactant1: "HCl", 
+                        reactant2: "NaOH", 
+                        products: ["NaCl", "H₂O"], 
+                        colors: ["green", "blue"] 
+                    }
+                ]
+            },
+            oxidationReduction: {
+                title: "Oxidation-Reduction (Redox) Reaction",
+                description: "Involves the transfer of electrons between two substances.",
+                examples: [
+                    { 
+                        reactant1: "2H₂", 
+                        reactant2: "O₂", 
+                        products: ["2H₂O"], 
+                        colors: ["colorless", "blue"] 
+                    },
+                    { 
+                        reactant1: "Zn", 
+                        reactant2: "Cu²⁺", 
+                        products: ["Zn²⁺", "Cu"], 
+                        colors: ["gray", "brown"] 
+                    },
+                    { 
+                        reactant1: "Fe²⁺", 
+                        reactant2: "Cl₂", 
+                        products: ["Fe³⁺", "2Cl⁻"], 
+                        colors: ["green", "yellow"] 
+                    }
+                ]
+            }
+
+        };
+
+        let currentReaction = null;
+
+        function showReaction(type) {
+            currentReaction = reactions[type];
+            document.getElementById("reaction-title").innerText = currentReaction.title;
+            document.getElementById("reaction-description").innerText = currentReaction.description;
+
+            populateReactantOptions();
+            updateSimulation();
+        }
+
+        function populateReactantOptions() {
+            const reactant1Dropdown = document.getElementById("reactant1");
+            const reactant2Dropdown = document.getElementById("reactant2");
+
+            reactant1Dropdown.innerHTML = "";
+            reactant2Dropdown.innerHTML = "";
+
+            currentReaction.examples.forEach((example, index) => {
+                const option1 = document.createElement("option");
+                option1.value = index;
+                option1.text = example.reactant1 || "N/A";
+                reactant1Dropdown.add(option1);
+
+                const option2 = document.createElement("option");
+                option2.value = index;
+                option2.text = example.reactant2 || "N/A";
+                reactant2Dropdown.add(option2);
+            });
+
+            updateSimulation();
+        }
+
+        function updateSimulation() {
+            const index = document.getElementById("reactant1").value;
+            const example = currentReaction.examples[index];
+
+            document.getElementById("liquid1").style.backgroundColor = example.colors[0];
+            document.getElementById("liquid2").style.backgroundColor = example.reactant2 ? example.colors[1] : "#ccc";
+
+            const productBeakers = document.getElementById("product-beakers");
+            productBeakers.innerHTML = "";
+            example.products.forEach((product, idx) => {
+                const beaker = document.createElement("div");
+                beaker.className = "beaker";
+                const liquid = document.createElement("div");
+                liquid.className = "liquid";
+                liquid.style.backgroundColor = example.colors[idx];
+                beaker.appendChild(liquid);
+                productBeakers.appendChild(beaker);
+
+                if (idx < example.products.length - 1) {
+                    const plus = document.createElement("span");
+                    plus.className = "plus";
+                    plus.innerText = "+";
+                    productBeakers.appendChild(plus);
+                }
+            });
+
+            document.getElementById("reaction-result").innerText = "";
+            document.getElementById("reaction-equation").innerText = "";
+        }
+
+        function performReaction() {
+            const index = document.getElementById("reactant1").value;
+            const example = currentReaction.examples[index];
+
+            document.getElementById("reaction-result").innerText = `Reacting ${example.reactant1} with ${example.reactant2}`;
+            document.getElementById("reaction-equation").innerText = `${example.reactant1} + ${example.reactant2} → ${example.products.join(" + ")}`;
+        }
+    </script>
+    
+</body>
+</html>
